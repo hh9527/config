@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REPO_URL="${CONFIG_REPO_URL:-https://github.com/hh9527/config.git}"
+CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+
+if ! command -v git >/dev/null; then
+	echo "git is required to install this config" >&2
+	exit 1
+fi
+
+if [ -d "$CONFIG_HOME/.git" ]; then
+	git -C "$CONFIG_HOME" pull --ff-only
+else
+	if [ -e "$CONFIG_HOME" ]; then
+		backup="$CONFIG_HOME.bak.$(date +%Y%m%d%H%M%S)"
+		mv "$CONFIG_HOME" "$backup"
+	fi
+	git clone "$REPO_URL" "$CONFIG_HOME"
+fi
+
+exec "$CONFIG_HOME/shell/setup.sh"

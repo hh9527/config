@@ -1,9 +1,13 @@
-local tsh="$(basename "$SHELL")"
+SHELL_TYPE="$(basename "$SHELL")"
+
 [ -f "$HOME/.config/shell/env" ] && source "$HOME/.config/shell/env"
-[ -x "$HOME/.local/bin/mise" ] && eval "$("$HOME/.local/bin/mise" activate "$tsh")"
-command -v "broot" > /dev/null && eval "$(broot --print-shell-function "$tsh")"
-command -v "lsd" > /dev/null && {
-	alias ls="lsd"
-	alias ll="lsd -alF"
-	alias la="lsd -A"
-}
+
+[ -x "$HOME/.local/bin/mise" ] && eval "$("$HOME/.local/bin/mise" activate "$SHELL_TYPE")"
+command -v broot >/dev/null && eval "$(broot --print-shell-function "$SHELL_TYPE")"
+
+if LSD_PATH="$(command -v lsd)" && [ -x "$LSD_PATH" ]; then
+	alias ls="$LSD_PATH"
+	alias ll="$LSD_PATH -alF"
+	alias la="$LSD_PATH -A"
+	unset LSD_PATH
+fi
