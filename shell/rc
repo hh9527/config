@@ -4,10 +4,10 @@ SHELL_TYPE="$(basename "$SHELL")"
 
 [ -x "$HOME/.local/bin/mise" ] && eval "$("$HOME/.local/bin/mise" activate "$SHELL_TYPE")"
 command -v broot >/dev/null && eval "$(broot --print-shell-function "$SHELL_TYPE")"
+command -v starship >/dev/null && eval "$(starship init "$SHELL_TYPE")"
 
-if LSD_PATH="$(command -v lsd)" && [ -x "$LSD_PATH" ]; then
-	alias ls="$LSD_PATH"
-	alias ll="$LSD_PATH -alF"
-	alias la="$LSD_PATH -A"
-	unset LSD_PATH
+if command -v lsd >/dev/null; then
+	alias ls="lsd"
+	alias ll="lsd -alF"
+	alias la="lsd -A"
 fi
