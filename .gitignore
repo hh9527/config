@@ -1,0 +1,9 @@
+*.bak
+
+node_modules/
+/broot/launcher/*
+!/broot/launcher/installed-v4
+/opencode/package.json
+/opencode/package-lock.json
+/opencode/bun.lock
+/opencode/.gitignore

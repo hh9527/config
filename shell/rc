@@ -1,0 +1,9 @@
+local tsh="$(basename "$SHELL")"
+[ -f "$HOME/.config/shell/env" ] && source "$HOME/.config/shell/env"
+[ -x "$HOME/.local/bin/mise" ] && eval "$("$HOME/.local/bin/mise" activate "$tsh")"
+command -v "broot" > /dev/null && eval "$(broot --print-shell-function "$tsh")"
+command -v "lsd" > /dev/null && {
+	alias ls="lsd"
+	alias ll="lsd -alF"
+	alias la="lsd -A"
+}

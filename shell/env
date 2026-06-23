@@ -1,0 +1,1 @@
+[ -f "$HOME/.local/priv/env" ] && source "$HOME/.local/priv/env"
