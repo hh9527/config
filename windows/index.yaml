@@ -1,0 +1,18 @@
+install:
+  - src: https://github.com/wezterm/wezterm/releases/download/nightly/WezTerm-windows-nightly.zip
+    sha256:
+      src: https://github.com/wezterm/wezterm/releases/download/nightly/WezTerm-windows-nightly.zip.sha256
+    type: extract
+    to: apps:WezTerm
+    strip-components: 1
+  - src: https://github.com/veeso/termscp/releases/download/v1.1.1/termscp-v1.1.1-x86_64-pc-windows-msvc.zip
+    type: extract
+    to: apps:TermSCP
+  - src: https://github.com/LiLittleCat/Cascadia-Next-Nerd-Font/releases/download/v1.0.1/CascadiaNextSCNF-ttc.tar.gz
+    type: extract
+    to: fonts
+  - src: ./user/.wezterm.lua
+    type: copy
+    to: user:.wezterm.lua
+links:
+  'bin/termscp': 'apps:TermSCP/termscp.exe'

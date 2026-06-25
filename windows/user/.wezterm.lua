@@ -2,6 +2,11 @@ local wezterm = require 'wezterm'
 local act = wezterm.action
 
 local ssh_domains = wezterm.default_ssh_domains()
+local localappdata = os.getenv 'LOCALAPPDATA'
+local font_dirs = {}
+if localappdata then
+  table.insert(font_dirs, localappdata .. '/Microsoft/Windows/Fonts')
+end
 
 local function field(t, color, text)
   if #t > 0 then
@@ -47,9 +52,10 @@ local config = {
   -- cursor_blink_rate = 0,
   -- window_background_opacity = 1.0,
   -- text_background_opacity = 1.0,
+  font_dirs = font_dirs,
   font = wezterm.font_with_fallback {
     'Cascadia Next SC NF',
-	-- 'Smile Nerd Font Mono',
+    -- 'Smile Nerd Font Mono',
     -- 'Sarasa Mono SC',
   },
   font_size = 14,
@@ -61,17 +67,17 @@ local config = {
   ssh_domains = wezterm.default_ssh_domains(),
   launch_menu = {
     { label = 'PowerShell',
-    domain = { DomainName = 'local' },
-    args = { 'powershell.exe', '-NoLogo' }
-  },
+      domain = { DomainName = 'local' },
+      args = { 'powershell.exe', '-NoLogo' }
+    },
     { label = 'CMD',
-    domain = { DomainName = 'local' },
-    args = { 'cmd.exe' }
-  },
+      domain = { DomainName = 'local' },
+      args = { 'cmd.exe' }
+    },
     { label = 'TermSCP',
-    domain = { DomainName = 'local' },
-    args = { 'termscp.exe' }
-  },
+      domain = { DomainName = 'local' },
+      args = { 'termscp.exe' }
+    },
   },
   keys = {
     { key = 'Tab', mods = 'CTRL', action = act.ActivateLastTab },
@@ -105,10 +111,10 @@ local config = {
       { key = 'l', mods = 'SHIFT', action = act.AdjustPaneSize { 'Right', 1 }},
       { key = 't', action = act.Multiple { act.SpawnTab 'CurrentPaneDomain', act.ClearKeyTableStack }},
       { key = 'x', action = act.Multiple { act.TogglePaneZoomState, act.ClearKeyTableStack }},
-    { key = ',', action = act.RotatePanes 'CounterClockwise' },
-    { key = '.', action = act.RotatePanes 'Clockwise' },
+      { key = ',', action = act.RotatePanes 'CounterClockwise' },
+      { key = '.', action = act.RotatePanes 'Clockwise' },
       { key = 'Escape', action = act.ClearKeyTableStack },
-    { key = 'Return', action = act.ClearKeyTableStack },
+      { key = 'Return', action = act.ClearKeyTableStack },
     }
   },
 }
