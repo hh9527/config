@@ -1,6 +1,8 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 
+local ssh_domains = wezterm.default_ssh_domains()
+
 local function field(t, color, text)
   if #t > 0 then
     table.insert(t, { Foreground = { AnsiColor = 'Grey' } })
@@ -39,7 +41,12 @@ wezterm.on('update-status', function(window, pane)
 end)
 
 local config = {
-  prefer_egl = true,
+  -- prefer_egl = true,
+  -- max_fps = 30,
+  -- animation_fps = 1,
+  -- cursor_blink_rate = 0,
+  -- window_background_opacity = 1.0,
+  -- text_background_opacity = 1.0,
   font = wezterm.font 'Sarasa Mono SC',
   font_size = 14,
   color_scheme = 'Bespin (base16)',
@@ -49,9 +56,18 @@ local config = {
   window_padding = { left = '1px', right = '1px', top = '1px', bottom = '1px' },
   ssh_domains = wezterm.default_ssh_domains(),
   launch_menu = {
-    { label = 'PowerShell', args = { 'powershell.exe', '-NoLogo' } },
-    { label = 'CMD', args = { 'cmd.exe' } },
-    { label = 'TermSCP', args = { 'termscp.exe' } },
+    { label = 'PowerShell',
+	  domain = { DomainName = 'local' },
+	  args = { 'powershell.exe', '-NoLogo' }
+	},
+    { label = 'CMD',
+	  domain = { DomainName = 'local' },
+	  args = { 'cmd.exe' }
+	},
+    { label = 'TermSCP',
+	  domain = { DomainName = 'local' },
+	  args = { 'termscp.exe' }
+	},
   },
   keys = {
     { key = 'Tab', mods = 'CTRL', action = act.ActivateLastTab },
@@ -84,8 +100,11 @@ local config = {
       { key = 'k', mods = 'SHIFT', action = act.AdjustPaneSize { 'Up', 1 }},
       { key = 'l', mods = 'SHIFT', action = act.AdjustPaneSize { 'Right', 1 }},
       { key = 't', action = act.Multiple { act.SpawnTab 'CurrentPaneDomain', act.ClearKeyTableStack }},
-      { key = 'Return', action = act.Multiple { act.TogglePaneZoomState, act.ClearKeyTableStack }},
+      { key = 'x', action = act.Multiple { act.TogglePaneZoomState, act.ClearKeyTableStack }},
+	  { key = ',', action = act.RotatePanes 'CounterClockwise' },
+	  { key = '.', action = act.RotatePanes 'Clockwise' },
       { key = 'Escape', action = act.ClearKeyTableStack },
+	  { key = 'Return', action = act.ClearKeyTableStack },
     }
   },
 }
