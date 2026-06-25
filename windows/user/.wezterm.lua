@@ -47,7 +47,11 @@ local config = {
   -- cursor_blink_rate = 0,
   -- window_background_opacity = 1.0,
   -- text_background_opacity = 1.0,
-  font = wezterm.font 'Sarasa Mono SC',
+  font = wezterm.font_with_fallback {
+    'Cascadia Next SC NF',
+	-- 'Smile Nerd Font Mono',
+    -- 'Sarasa Mono SC',
+  },
   font_size = 14,
   color_scheme = 'Bespin (base16)',
   default_cursor_style = 'BlinkingBar',
@@ -57,17 +61,17 @@ local config = {
   ssh_domains = wezterm.default_ssh_domains(),
   launch_menu = {
     { label = 'PowerShell',
-	  domain = { DomainName = 'local' },
-	  args = { 'powershell.exe', '-NoLogo' }
-	},
+    domain = { DomainName = 'local' },
+    args = { 'powershell.exe', '-NoLogo' }
+  },
     { label = 'CMD',
-	  domain = { DomainName = 'local' },
-	  args = { 'cmd.exe' }
-	},
+    domain = { DomainName = 'local' },
+    args = { 'cmd.exe' }
+  },
     { label = 'TermSCP',
-	  domain = { DomainName = 'local' },
-	  args = { 'termscp.exe' }
-	},
+    domain = { DomainName = 'local' },
+    args = { 'termscp.exe' }
+  },
   },
   keys = {
     { key = 'Tab', mods = 'CTRL', action = act.ActivateLastTab },
@@ -85,8 +89,8 @@ local config = {
       }},
       { key = '[', action = act.ActivateTabRelativeNoWrap(-1) },
       { key = ']', action = act.ActivateTabRelativeNoWrap(1) },
-      { key = '{', mods = 'SHIFT', action = act.MoveTabRelative(-1) },
-      { key = '}', mods = 'SHIFT', action = act.MoveTabRelative(1) },
+      { key = '[', mods = 'ALT', action = act.MoveTabRelative(-1) },
+      { key = ']', mods = 'ALT', action = act.MoveTabRelative(1) },
       { key = '-', action = act.Multiple { act.SplitPane { direction = 'Down' }, act.ClearKeyTableStack }},
       { key = '_', mods = 'SHIFT', action = act.Multiple { act.SplitPane { direction = 'Up' }, act.ClearKeyTableStack }},
       { key = '\\', action = act.Multiple { act.SplitPane { direction = 'Right' }, act.ClearKeyTableStack }},
@@ -101,10 +105,10 @@ local config = {
       { key = 'l', mods = 'SHIFT', action = act.AdjustPaneSize { 'Right', 1 }},
       { key = 't', action = act.Multiple { act.SpawnTab 'CurrentPaneDomain', act.ClearKeyTableStack }},
       { key = 'x', action = act.Multiple { act.TogglePaneZoomState, act.ClearKeyTableStack }},
-	  { key = ',', action = act.RotatePanes 'CounterClockwise' },
-	  { key = '.', action = act.RotatePanes 'Clockwise' },
+    { key = ',', action = act.RotatePanes 'CounterClockwise' },
+    { key = '.', action = act.RotatePanes 'Clockwise' },
       { key = 'Escape', action = act.ClearKeyTableStack },
-	  { key = 'Return', action = act.ClearKeyTableStack },
+    { key = 'Return', action = act.ClearKeyTableStack },
     }
   },
 }
