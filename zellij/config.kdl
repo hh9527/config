@@ -3,7 +3,7 @@ theme "one-half-dark"
 keybinds clear-defaults=true {
     normal {
         bind "Alt space" { FocusPreviousPane; SwitchToMode "locked"; }
-        bind "Alt `" { FocusPreviousPane; SwitchToMode "locked"; }
+        bind "Alt q" { FocusPreviousPane; SwitchToMode "locked"; }
         bind "R" { SwitchToMode "renametab"; TabNameInput 0; }
         bind "r" { SwitchToMode "renamepane"; PaneNameInput 0; }
         bind "s" { SwitchToMode "scroll"; }
@@ -37,7 +37,7 @@ keybinds clear-defaults=true {
     }
     locked {
         bind "Alt space" { SwitchToMode "normal"; }
-        bind "Alt `" { SwitchToMode "normal"; }
+        bind "Alt q" { SwitchToMode "normal"; }
     }
     scroll {
         bind "e" { EditScrollback; SwitchToMode "locked"; }
