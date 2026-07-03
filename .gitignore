@@ -7,3 +7,6 @@ node_modules/
 /opencode/package-lock.json
 /opencode/bun.lock
 /opencode/.gitignore
+/gh/hosts.yml
+/helix/runtime
+/helix/languages.toml
