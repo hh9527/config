@@ -3,10 +3,8 @@
 node_modules/
 /broot/launcher/*
 !/broot/launcher/installed-v4
-/opencode/package.json
-/opencode/package-lock.json
-/opencode/bun.lock
-/opencode/.gitignore
+/opencode/*
+!/opencode/opencode.jsonc
 /gh/hosts.yml
 /helix/runtime
 /helix/languages.toml
