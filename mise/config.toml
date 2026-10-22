@@ -1,7 +1,7 @@
 [tools]
 bottom = "latest"
 cargo-binstall = "latest"
-"cargo:broot" = "latest"
+broot = "latest"
 codex = "latest"
 delta = "latest"
 fd = "latest"
