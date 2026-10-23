@@ -24,6 +24,7 @@ typst = "latest"
 uv = "latest"
 wasmtime = "latest"
 zellij = "latest"
+watchexec = "latest"
 
 [env]
 EDITOR = "hx"

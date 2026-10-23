@@ -1,5 +1,5 @@
 *.bak
-
+zsh/.zcompdump
 node_modules/
 /broot/launcher/*
 !/broot/launcher/installed-v4
