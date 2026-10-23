@@ -1,1 +1,2 @@
 [ -f "$HOME/.local/priv/env" ] && source "$HOME/.local/priv/env"
+export TMPDIR="${XDG_CACHE_HOME:-$HOME/.cache}/tmp"

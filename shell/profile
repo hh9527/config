@@ -1,1 +1,2 @@
 [ -f "$HOME/.config/shell/env" ] && source "$HOME/.config/shell/env"
+[ -z "${TMPDIR:-}" ] || [ -d "$TMPDIR" ] || install -d -m 700 "$TMPDIR"

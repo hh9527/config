@@ -1,6 +1,7 @@
 SHELL_TYPE="$(basename "$SHELL")"
 
 [ -f "$HOME/.config/shell/env" ] && source "$HOME/.config/shell/env"
+[ -z "${TMPDIR:-}" ] || [ -d "$TMPDIR" ] || install -d -m 700 "$TMPDIR"
 
 [ -x "$HOME/.local/bin/mise" ] && eval "$("$HOME/.local/bin/mise" activate "$SHELL_TYPE" --shims)"
 command -v broot >/dev/null && eval "$(broot --print-shell-function "$SHELL_TYPE")"
